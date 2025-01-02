@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Redirect</title>
+</head>
+<body>
+    <h1>מעבר לצ'אט WhatsApp</h1>
+    <p>לחצו על הכפתור למטה כדי לפתוח את WhatsApp.</p>
+    
+    <!-- כפתור לפתיחה -->
+    <button onclick="openWhatsApp()">פתח WhatsApp</button>
+
+    <!-- קישור גיבוי -->
+    <p>אם זה לא עובד, <a href="https://wa.me/972542266696?text=היי,%20אשמח%20לפרטים">לחצו כאן</a> לפתיחה ישירה.</p>
+    
+    <script>
+        function openWhatsApp() {
+            window.location.href = "whatsapp://send?phone=972542266696&text=היי,%20אשמח%20לפרטים";
+        }
+    </script>
+</body>
+</html>
