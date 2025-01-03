@@ -3,48 +3,77 @@
 <head>
     <title>Redirect to WhatsApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #25d366;
+        }
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #25d366;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #1ebe5d;
+        }
+    </style>
     <script>
         function redirectToWhatsApp() {
-            // 1. ניסיון לפתוח את אפליקציית WhatsApp עם פרוטוקול whatsapp://
-            const whatsappUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            
-            // יצירת iframe שמנסה לפתוח את הפרוטוקול
+            // 1. יצירת אלמנט iframe לנסות לפתוח את פרוטוקול whatsapp://
+            const whatsappProtocolUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
-            iframe.src = whatsappUrl;
+            iframe.src = whatsappProtocolUrl;
             document.body.appendChild(iframe);
 
-            // 2. אם לא עובד, גיבוי לדפדפן ה-Web של WhatsApp
-            setTimeout(function() {
-                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            }, 1500); // המתנה של 1.5 שניות
-
-            // הסרת ה-iframe לאחר שימוש
+            // 2. ניסיון עם קישור intent:// עבור אנדרואיד
             setTimeout(() => {
-                document.body.removeChild(iframe);
-            }, 3000);
-        }
-
-        // ניסיון נוסף להשתמש בפרוטוקול intent:// לאנדרואיד
-        function redirectWithIntent() {
-            const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
-            
-            try {
+                const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
                 window.location.href = intentUrl;
-            } catch (e) {
-                console.error("Intent failed", e);
-            }
+            }, 1000);
+
+            // 3. הפניה לדף Web של WhatsApp אם כל האפשרויות נכשלות
+            setTimeout(() => {
+                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            }, 2000);
         }
 
-        // הפעלת הפניות באופן אוטומטי
+        function forceOpenWhatsApp() {
+            // 4. שימוש במניפולציות לפתיחת אפליקציות דרך חלון חדש
+            const anchor = document.createElement('a');
+            anchor.href = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            anchor.target = "_blank";
+            anchor.click();
+
+            // גיבוי נוסף במידה והאפליקציה לא נפתחת
+            setTimeout(() => {
+                window.open("https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!", "_blank");
+            }, 1500);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             redirectToWhatsApp();
-            setTimeout(redirectWithIntent, 2000); // ניסיון נוסף עם intent לאחר 2 שניות
+            setTimeout(forceOpenWhatsApp, 3000); // ניסיון נוסף לאחר 3 שניות
         });
     </script>
 </head>
 <body>
-    <h1>מעבירים אותך לוואטסאפ...</h1>
-    <p>אם ההפניה לא עובדת, <a href="https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">לחץ כאן כדי לעבור ידנית.</a></p>
+    <h1>מעבר לוואטסאפ</h1>
+    <p>אם ההפניה לא מתבצעת אוטומטית, ניתן ללחוץ על אחד הכפתורים הבאים:</p>
+    <a class="button" href="whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">פתח בוואטסאפ</a>
+    <a class="button" href="https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!" target="_blank">פתח בדפדפן</a>
 </body>
 </html>
