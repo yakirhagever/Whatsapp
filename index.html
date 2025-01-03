@@ -32,48 +32,43 @@
     </style>
     <script>
         function redirectToWhatsApp() {
-            // 1. יצירת אלמנט iframe לנסות לפתוח את פרוטוקול whatsapp://
             const whatsappProtocolUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            const fallbackWebUrl = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
+
+            // 1. יצירת אלמנט iframe לנסות לפתוח את האפליקציה
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
             iframe.src = whatsappProtocolUrl;
             document.body.appendChild(iframe);
 
-            // 2. ניסיון עם קישור intent:// עבור אנדרואיד
+            // 2. ניסיון עם intent:// עבור אנדרואיד
             setTimeout(() => {
-                const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
                 window.location.href = intentUrl;
             }, 1000);
 
-            // 3. הפניה לדף Web של WhatsApp אם כל האפשרויות נכשלות
+            // 3. ניסיון לפתוח דרך חלון חדש
             setTimeout(() => {
-                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+                const anchor = document.createElement('a');
+                anchor.href = whatsappProtocolUrl;
+                anchor.target = "_blank";
+                anchor.click();
             }, 2000);
-        }
 
-        function forceOpenWhatsApp() {
-            // 4. שימוש במניפולציות לפתיחת אפליקציות דרך חלון חדש
-            const anchor = document.createElement('a');
-            anchor.href = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            anchor.target = "_blank";
-            anchor.click();
-
-            // גיבוי נוסף במידה והאפליקציה לא נפתחת
+            // 4. ניסיון אחרון לדף Web אם הכל נכשל
             setTimeout(() => {
-                window.open("https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!", "_blank");
-            }, 1500);
+                window.location.href = fallbackWebUrl;
+            }, 3000);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             redirectToWhatsApp();
-            setTimeout(forceOpenWhatsApp, 3000); // ניסיון נוסף לאחר 3 שניות
         });
     </script>
 </head>
 <body>
     <h1>מעבר לוואטסאפ</h1>
-    <p>אם ההפניה לא מתבצעת אוטומטית, ניתן ללחוץ על אחד הכפתורים הבאים:</p>
-    <a class="button" href="whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">פתח בוואטסאפ</a>
-    <a class="button" href="https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!" target="_blank">פתח בדפדפן</a>
+    <p>אנחנו מנסים להעביר אותך לאפליקציית וואטסאפ...</p>
+    <p>אם זה לא עובד אוטומטית, <a class="button" href="https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!" target="_blank">לחץ כאן לפתיחה ידנית</a>.</p>
 </body>
 </html>
