@@ -3,36 +3,43 @@
 <head>
     <title>Redirect to WhatsApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="3;url=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">
     <script>
         function redirectToWhatsApp() {
-            // נסה לפתוח את אפליקציית וואטסאפ ישירות
+            // 1. ניסיון לפתוח את אפליקציית WhatsApp עם פרוטוקול whatsapp://
             const whatsappUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            window.location.href = whatsappUrl;
-
-            // אם זה נכשל, המתן 1 שנייה והפנה לדפדפן ה-Web של WhatsApp
-            setTimeout(function() {
-                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            }, 1000);
-        }
-
-        // בדיקת תמיכה בפרוטוקול WhatsApp
-        function tryWhatsApp() {
+            
+            // יצירת iframe שמנסה לפתוח את הפרוטוקול
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
-            iframe.src = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            iframe.src = whatsappUrl;
             document.body.appendChild(iframe);
 
-            // פינוי ה-iframe לאחר זמן מה
+            // 2. אם לא עובד, גיבוי לדפדפן ה-Web של WhatsApp
+            setTimeout(function() {
+                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            }, 1500); // המתנה של 1.5 שניות
+
+            // הסרת ה-iframe לאחר שימוש
             setTimeout(() => {
                 document.body.removeChild(iframe);
-            }, 2000);
+            }, 3000);
         }
 
-        // הפעלת הפניה אוטומטית
+        // ניסיון נוסף להשתמש בפרוטוקול intent:// לאנדרואיד
+        function redirectWithIntent() {
+            const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
+            
+            try {
+                window.location.href = intentUrl;
+            } catch (e) {
+                console.error("Intent failed", e);
+            }
+        }
+
+        // הפעלת הפניות באופן אוטומטי
         document.addEventListener("DOMContentLoaded", function() {
-            tryWhatsApp();
             redirectToWhatsApp();
+            setTimeout(redirectWithIntent, 2000); // ניסיון נוסף עם intent לאחר 2 שניות
         });
     </script>
 </head>
