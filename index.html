@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirect to WhatsApp</title>
+    <title>הסבר לפתיחה בדפדפן חיצוני</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -11,12 +11,26 @@
             background-color: #f9f9f9;
         }
         h1 {
-            color: #25d366;
+            color: #ff0000;
         }
         p {
             font-size: 18px;
             margin: 15px 0;
             color: #333;
+        }
+        .instructions {
+            text-align: left;
+            display: inline-block;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .arrow {
+            width: 150px;
+            margin: 20px auto;
+            display: block;
         }
         .button {
             display: inline-block;
@@ -26,71 +40,33 @@
             background-color: #25d366;
             text-decoration: none;
             border-radius: 5px;
-            margin: 10px;
+            margin: 20px auto;
             border: none;
             cursor: pointer;
         }
         .button:hover {
             background-color: #1ebe5d;
         }
-        .hidden {
-            display: none;
-        }
-        .qr-code {
-            margin: 20px 0;
-        }
     </style>
-    <script>
-        function isTikTokBrowser() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            return userAgent.includes("TikTok");
-        }
-
-        function openWhatsAppDirectly() {
-            const whatsappUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            const fallbackWebUrl = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-
-            try {
-                window.location.href = whatsappUrl;
-                setTimeout(() => {
-                    window.location.href = fallbackWebUrl;
-                }, 2000);
-            } catch (error) {
-                window.location.href = fallbackWebUrl;
-            }
-        }
-
-        function showFallbackInstructions() {
-            const instructions = document.createElement('div');
-            instructions.innerHTML = `
-                <h2>לא הצלחנו להעביר אותך אוטומטית</h2>
-                <p>אנא בצע את הפעולות הבאות:</p>
-                <ol style="text-align: left; margin: 0 auto; max-width: 300px;">
-                    <li>לחץ על 3 הנקודות בפינת המסך.</li>
-                    <li>בחר \"פתח בדפדפן חיצוני\".</li>
-                    <li>לאחר מכן, ההפניה תתבצע בהצלחה.</li>
-                </ol>
-            `;
-            document.body.appendChild(instructions);
-        }
-
-        function startRedirect() {
-            if (isTikTokBrowser()) {
-                showFallbackInstructions();
-            } else {
-                openWhatsAppDirectly();
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", startRedirect);
-    </script>
 </head>
 <body>
-    <h1>מעבר לוואטסאפ</h1>
-    <p>אנחנו מנסים להעביר אותך לוואטסאפ. אנא המתן...</p>
-    <div class="qr-code">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!" alt="QR Code to WhatsApp">
-        <p>ניתן לסרוק את קוד ה-QR לפתיחה ישירה בוואטסאפ</p>
+    <h1>שימו לב!</h1>
+    <p>טיקטוק לא מאפשרים מעבר ישיר לוואטסאפ.</p>
+    <p>על מנת ליצור קשר, יש לפתוח את הדף הזה בדפדפן חיצוני.</p>
+
+    <div class="instructions">
+        <p>בצעו את השלבים הבאים:</p>
+        <ol>
+            <li>לחצו על כפתור <strong>3 הנקודות</strong> בפינה הימנית העליונה של המסך.</li>
+            <li>בחרו באפשרות <strong>"פתח בדפדפן"</strong>.</li>
+        </ol>
+        <img src="https://via.placeholder.com/150x150?text=חץ+ל-3+נקודות" alt="חץ לכפתור 3 הנקודות" class="arrow">
     </div>
+
+    <p>לאחר פתיחת הדף בדפדפן חיצוני, תועברו ישירות לוואטסאפ.</p>
+    <a href="whatsapp://send?phone=972542266696&text=היי, אשמח לקישור לאתר שלכם ולפרטים!" class="button">פתחו את וואטסאפ</a>
+
+    <p>או לחצו על הקישור למטה:</p>
+    <a href="https://api.whatsapp.com/send?phone=972542266696&text=היי, אשמח לקישור לאתר שלכם ולפרטים!" class="button">פתחו בדפדפן</a>
 </body>
 </html>
