@@ -41,87 +41,56 @@
         }
     </style>
     <script>
-        function attemptWhatsAppOpen() {
+        function isTikTokBrowser() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            return userAgent.includes("TikTok");
+        }
+
+        function openWhatsAppDirectly() {
             const whatsappUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
             const fallbackWebUrl = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-            const intentUrl = "intent://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!#Intent;scheme=whatsapp;package=com.whatsapp;end;";
 
-            // Step 1: Attempt to open using iframe
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = whatsappUrl;
-            document.body.appendChild(iframe);
-
-            // Step 2: Attempt with intent URL for Android
-            setTimeout(() => {
-                window.location.href = intentUrl;
-            }, 1000);
-
-            // Step 3: Attempt using anchor click for direct opening
-            setTimeout(() => {
-                const anchor = document.createElement('a');
-                anchor.href = whatsappUrl;
-                anchor.target = "_blank";
-                document.body.appendChild(anchor);
-                anchor.click();
-                document.body.removeChild(anchor);
-            }, 2000);
-
-            // Step 4: Redirect to fallback Web URL if all else fails
-            setTimeout(() => {
-                window.location.href = fallbackWebUrl;
-            }, 3000);
-        }
-
-        function forceWhatsAppInteraction() {
-            const interactionContainer = document.createElement('div');
-            interactionContainer.id = 'manual-interaction';
-
-            const interactionButton = document.createElement('button');
-            interactionButton.textContent = "לחץ כאן לפתיחה בוואטסאפ!";
-            interactionButton.className = 'button';
-            interactionButton.style = "margin-top: 20px;";
-
-            interactionButton.addEventListener('click', () => {
-                window.location.href = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-
-                // Additional fallback interaction
+            try {
+                window.location.href = whatsappUrl;
                 setTimeout(() => {
-                    window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
-                }, 1500);
-            });
-
-            const qrContainer = document.createElement('div');
-            qrContainer.className = 'qr-code';
-
-            const qrImage = document.createElement('img');
-            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!';
-            qrImage.alt = 'QR Code to WhatsApp';
-
-            const qrDescription = document.createElement('p');
-            qrDescription.textContent = "ניתן גם לסרוק את הקוד כדי לפתוח את וואטסאפ";
-
-            qrContainer.appendChild(qrImage);
-            qrContainer.appendChild(qrDescription);
-
-            interactionContainer.appendChild(interactionButton);
-            interactionContainer.appendChild(qrContainer);
-            document.body.appendChild(interactionContainer);
+                    window.location.href = fallbackWebUrl;
+                }, 2000);
+            } catch (error) {
+                window.location.href = fallbackWebUrl;
+            }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            attemptWhatsAppOpen();
+        function showFallbackInstructions() {
+            const instructions = document.createElement('div');
+            instructions.innerHTML = `
+                <h2>לא הצלחנו להעביר אותך אוטומטית</h2>
+                <p>אנא בצע את הפעולות הבאות:</p>
+                <ol style="text-align: left; margin: 0 auto; max-width: 300px;">
+                    <li>לחץ על 3 הנקודות בפינת המסך.</li>
+                    <li>בחר \"פתח בדפדפן חיצוני\".</li>
+                    <li>לאחר מכן, ההפניה תתבצע בהצלחה.</li>
+                </ol>
+            `;
+            document.body.appendChild(instructions);
+        }
 
-            // Add manual interaction if automatic attempts fail
-            setTimeout(() => {
-                forceWhatsAppInteraction();
-            }, 5000);
-        });
+        function startRedirect() {
+            if (isTikTokBrowser()) {
+                showFallbackInstructions();
+            } else {
+                openWhatsAppDirectly();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", startRedirect);
     </script>
 </head>
 <body>
     <h1>מעבר לוואטסאפ</h1>
     <p>אנחנו מנסים להעביר אותך לוואטסאפ. אנא המתן...</p>
-    <p>אם ההפניה האוטומטית לא מתבצעת, כפתור יופיע בעוד מספר שניות לפתיחה ידנית, או סרוק את קוד ה-QR למעבר מיידי.</p>
+    <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!" alt="QR Code to WhatsApp">
+        <p>ניתן לסרוק את קוד ה-QR לפתיחה ישירה בוואטסאפ</p>
+    </div>
 </body>
 </html>
