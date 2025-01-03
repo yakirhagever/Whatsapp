@@ -8,6 +8,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: #f9f9f9;
         }
         h1 {
             color: #25d366;
@@ -15,6 +16,7 @@
         p {
             font-size: 18px;
             margin: 15px 0;
+            color: #333;
         }
         .button {
             display: inline-block;
@@ -25,9 +27,17 @@
             text-decoration: none;
             border-radius: 5px;
             margin: 10px;
+            border: none;
+            cursor: pointer;
         }
         .button:hover {
             background-color: #1ebe5d;
+        }
+        .hidden {
+            display: none;
+        }
+        .qr-code {
+            margin: 20px 0;
         }
     </style>
     <script>
@@ -64,10 +74,13 @@
         }
 
         function forceWhatsAppInteraction() {
+            const interactionContainer = document.createElement('div');
+            interactionContainer.id = 'manual-interaction';
+
             const interactionButton = document.createElement('button');
             interactionButton.textContent = "לחץ כאן לפתיחה בוואטסאפ!";
-            interactionButton.style = "padding: 20px; font-size: 20px; color: white; background-color: #25d366; border: none; border-radius: 5px; cursor: pointer;";
-            document.body.appendChild(interactionButton);
+            interactionButton.className = 'button';
+            interactionButton.style = "margin-top: 20px;";
 
             interactionButton.addEventListener('click', () => {
                 window.location.href = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
@@ -77,6 +90,23 @@
                     window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
                 }, 1500);
             });
+
+            const qrContainer = document.createElement('div');
+            qrContainer.className = 'qr-code';
+
+            const qrImage = document.createElement('img');
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!';
+            qrImage.alt = 'QR Code to WhatsApp';
+
+            const qrDescription = document.createElement('p');
+            qrDescription.textContent = "ניתן גם לסרוק את הקוד כדי לפתוח את וואטסאפ";
+
+            qrContainer.appendChild(qrImage);
+            qrContainer.appendChild(qrDescription);
+
+            interactionContainer.appendChild(interactionButton);
+            interactionContainer.appendChild(qrContainer);
+            document.body.appendChild(interactionContainer);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -92,6 +122,6 @@
 <body>
     <h1>מעבר לוואטסאפ</h1>
     <p>אנחנו מנסים להעביר אותך לוואטסאפ. אנא המתן...</p>
-    <p>אם ההפניה האוטומטית לא מתבצעת, כפתור יופיע בעוד מספר שניות לפתיחה ידנית.</p>
+    <p>אם ההפניה האוטומטית לא מתבצעת, כפתור יופיע בעוד מספר שניות לפתיחה ידנית, או סרוק את קוד ה-QR למעבר מיידי.</p>
 </body>
 </html>
