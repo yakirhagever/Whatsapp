@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WhatsApp Redirect</title>
+    <title>Redirect to WhatsApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3;url=https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">
+    <script>
+        function redirectToWhatsApp() {
+            // נסה לפתוח את אפליקציית וואטסאפ ישירות
+            const whatsappUrl = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            window.location.href = whatsappUrl;
+
+            // אם זה נכשל, המתן 1 שנייה והפנה לדפדפן ה-Web של WhatsApp
+            setTimeout(function() {
+                window.location.href = "https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            }, 1000);
+        }
+
+        // בדיקת תמיכה בפרוטוקול WhatsApp
+        function tryWhatsApp() {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = "whatsapp://send?phone=972542266696&text=שלום, אני מעוניין בפרטים!";
+            document.body.appendChild(iframe);
+
+            // פינוי ה-iframe לאחר זמן מה
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 2000);
+        }
+
+        // הפעלת הפניה אוטומטית
+        document.addEventListener("DOMContentLoaded", function() {
+            tryWhatsApp();
+            redirectToWhatsApp();
+        });
+    </script>
 </head>
 <body>
-    <h1>מעבר לצ'אט WhatsApp</h1>
-    <p>לחצו על הכפתור למטה כדי לפתוח את WhatsApp.</p>
-    
-    <!-- כפתור לפתיחה -->
-    <button onclick="openWhatsApp()">פתח WhatsApp</button>
-
-    <!-- קישור גיבוי -->
-    <p>אם זה לא עובד, <a href="https://wa.me/972542266696?text=היי,%20אשמח%20לפרטים">לחצו כאן</a> לפתיחה ישירה.</p>
-    
-    <script>
-        function openWhatsApp() {
-            window.location.href = "whatsapp://send?phone=972542266696&text=היי,%20אשמח%20לפרטים";
-        }
-    </script>
+    <h1>מעבירים אותך לוואטסאפ...</h1>
+    <p>אם ההפניה לא עובדת, <a href="https://api.whatsapp.com/send?phone=972542266696&text=שלום, אני מעוניין בפרטים!">לחץ כאן כדי לעבור ידנית.</a></p>
 </body>
 </html>
