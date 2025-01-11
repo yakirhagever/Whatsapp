@@ -1,72 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="he" dir="rtl">
 <head>
-    <title>הסבר לפתיחה בדפדפן חיצוני</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חסום</title>
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #2c2c2c;
+        }
+        .telegram-blocked {
             text-align: center;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #ff0000;
-        }
-        p {
-            font-size: 18px;
-            margin: 15px 0;
-            color: #333;
-        }
-        .instructions {
-            text-align: left;
-            display: inline-block;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
         }
-        .arrow {
-            width: 150px;
-            margin: 20px auto;
-            display: block;
+        .telegram-blocked img {
+            width: 80px;
+            margin-bottom: 20px;
         }
-        .button {
-            display: inline-block;
-            padding: 15px 25px;
-            font-size: 18px;
-            color: #fff;
-            background-color: #25d366;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px auto;
-            border: none;
-            cursor: pointer;
+        .telegram-blocked h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
-        .button:hover {
-            background-color: #1ebe5d;
+        .telegram-blocked p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .telegram-blocked .info {
+            font-size: 14px;
+            color: #757575;
         }
     </style>
 </head>
 <body>
-    <h1>שימו לב!</h1>
-    <p>טיקטוק לא מאפשרים מעבר ישיר לוואטסאפ.</p>
-    <p>על מנת ליצור קשר, יש לפתוח את הדף הזה בדפדפן חיצוני.</p>
-
-    <div class="instructions">
-        <p>בצעו את השלבים הבאים:</p>
-        <ol>
-            <li>לחצו על כפתור <strong>3 הנקודות</strong> בפינה הימנית העליונה של המסך.</li>
-            <li>בחרו באפשרות <strong>\"פתח בדפדפן\"</strong>.</li>
-        </ol>
-        <img src="https://via.placeholder.com/150x150?text=חץ+ל-3+נקודות" alt="חץ לכפתור 3 הנקודות" class="arrow">
+    <div class="telegram-blocked">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
+        <h1>העמוד נחסם</h1>
+        <p>הגישה לעמוד זה נחסמה למשך שבוע עקב הפרת הכללים.</p>
+        <p class="info">ניתן לחזור לעמוד זה ב-18 לינואר 2025.</p>
     </div>
-
-    <p>לאחר פתיחת הדף בדפדפן חיצוני, תועברו ישירות לוואטסאפ.</p>
-    <a href="whatsapp://send?phone=972542266696&text=היי, אשמח לקישור לאתר שלכם ולפרטים!" class="button">פתחו את וואטסאפ</a>
-
-    <p>או לחצו על הקישור למטה:</p>
-    <a href="https://api.whatsapp.com/send?phone=972542266696&text=היי, אשמח לקישור לאתר שלכם ולפרטים!" class="button">פתחו בדפדפן</a>
 </body>
 </html>
