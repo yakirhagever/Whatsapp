@@ -1,54 +1,83 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+# נתוני לוח האימונים
+training_schedule = {
+    "last_training": {"date": "28 בפברואר 2024", "day": "רביעי", "time": "20:00"},
+    "next_trainings": [
+        {"date": "2 במרץ 2024", "day": "שבת", "time": "19:30"},
+        {"date": "4 במרץ 2024", "day": "שני", "time": "20:00"},
+    ]
+}
+
+# תבנית HTML מעוצבת
+html_template = """
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>חסום</title>
+    <title>לוז אימונים - ספרטן ישראל</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #2c2c2c;
-        }
-        .telegram-blocked {
+            background-color: #f4f4f4;
             text-align: center;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background: white;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
+            box-shadow: 0px 0px 10px 0px gray;
+            margin-top: 50px;
+            border-radius: 10px;
         }
-        .telegram-blocked img {
-            width: 80px;
-            margin-bottom: 20px;
+        h1 {
+            color: #d9534f;
         }
-        .telegram-blocked h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
+        .schedule {
+            margin-top: 20px;
+            font-size: 18px;
         }
-        .telegram-blocked p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .telegram-blocked .info {
-            font-size: 14px;
-            color: #757575;
+        .training {
+            background: #eee;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="telegram-blocked">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
-        <h1>העמוד נחסם</h1>
-        <p>הגישה לעמוד זה נחסמה למשך שבוע עקב הפרת הכללים.</p>
-        <p class="info">ניתן לחזור לעמוד זה ב-18 לינואר 2025.</p>
+    <div class="container">
+        <h1>לוז אימונים - ספרטן ישראל</h1>
+        <h2>יקיר אלבז</h2>
+
+        <div class="schedule">
+            <h3>🛑 אימון אחרון:</h3>
+            <div class="training">
+                <p><strong>יום {{ last_training.day }}, {{ last_training.date }}</strong> - בשעה {{ last_training.time }}</p>
+            </div>
+
+            <h3>📅 אימונים קרובים:</h3>
+            {% for training in next_trainings %}
+                <div class="training">
+                    <p><strong>יום {{ training.day }}, {{ training.date }}</strong> - בשעה {{ training.time }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(html_template, **training_schedule)
+
+# הפעלת השרת
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
