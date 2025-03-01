@@ -1,18 +1,3 @@
-from flask import Flask, render_template_string
-
-app = Flask(__name__)
-
-# נתוני לוח האימונים
-training_schedule = {
-    "last_training": {"date": "28 בפברואר 2024", "day": "רביעי", "time": "20:00"},
-    "next_trainings": [
-        {"date": "2 במרץ 2024", "day": "שבת", "time": "19:30"},
-        {"date": "4 במרץ 2024", "day": "שני", "time": "20:00"},
-    ]
-}
-
-# תבנית HTML מעוצבת
-html_template = """
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -59,25 +44,17 @@ html_template = """
         <div class="schedule">
             <h3>🛑 אימון אחרון:</h3>
             <div class="training">
-                <p><strong>יום {{ last_training.day }}, {{ last_training.date }}</strong> - בשעה {{ last_training.time }}</p>
+                <p><strong>יום רביעי, 28 בפברואר 2024</strong> - בשעה 20:00</p>
             </div>
 
             <h3>📅 אימונים קרובים:</h3>
-            {% for training in next_trainings %}
-                <div class="training">
-                    <p><strong>יום {{ training.day }}, {{ training.date }}</strong> - בשעה {{ training.time }}</p>
-                </div>
-            {% endfor %}
+            <div class="training">
+                <p><strong>יום שבת, 2 במרץ 2024</strong> - בשעה 19:30</p>
+            </div>
+            <div class="training">
+                <p><strong>יום שני, 4 במרץ 2024</strong> - בשעה 20:00</p>
+            </div>
         </div>
     </div>
 </body>
 </html>
-"""
-
-@app.route("/")
-def home():
-    return render_template_string(html_template, **training_schedule)
-
-# הפעלת השרת
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
