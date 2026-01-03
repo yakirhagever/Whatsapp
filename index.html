@@ -10,133 +10,205 @@
             --nike-black: #111111;
             --nike-white: #ffffff;
             --nike-grey: #f5f5f5;
+            --nike-dark-grey: #757575;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--nike-white); color: var(--nike-black); }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--nike-white); color: var(--nike-black); -webkit-font-smoothing: antialiased; }
 
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: var(--nike-white); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; }
-        .nav-logo img { height: 45px; cursor: pointer; }
-        .nav-links { display: flex; gap: 20px; font-weight: 700; }
+        /* Navbar */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 30px; background: var(--nike-white); 
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; 
+        }
+        .nav-logo img { height: 50px; cursor: pointer; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-item { font-weight: 700; font-size: 16px; cursor: pointer; text-transform: uppercase; }
 
-        .view { display: none; }
-        .view.active { display: block; }
+        /* View Management */
+        .view { display: none; min-height: 100vh; }
+        .view.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Hero Section - מותאם למקסימום תאימות */
-        .hero-container {
-            position: relative;
+        /* Hero Section FIXED with JPEG */
+        .hero { 
+            position: relative; 
             width: 100%;
-            background-color: #000;
-            line-height: 0; /* מונע רווחים לבנים מתחת לתמונה */
+            height: 80vh; 
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
 
-        .hero-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .hero-btn-overlay {
+        .hero img {
             position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 1;
         }
 
-        .btn-nike {
-            background: var(--nike-white);
-            color: var(--nike-black);
-            padding: 12px 35px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            white-space: nowrap;
+        .hero-overlay {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 50px;
+            width: 100%;
+            text-align: center;
         }
 
-        /* שאר העיצוב */
-        .featured-section { padding: 40px 20px; background: var(--nike-grey); text-align: right; margin: 20px; border-radius: 8px; }
-        .headline { font-size: 32px; font-weight: 900; margin-bottom: 15px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 20px; }
-        .product-card { text-align: right; padding-bottom: 20px; }
-        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--nike-grey); }
+        .btn-nike { 
+            background: var(--nike-black); color: white; padding: 16px 45px; 
+            border-radius: 35px; border: none; font-weight: 700; cursor: pointer; 
+            font-size: 18px; text-decoration: none; display: inline-block;
+        }
 
-        footer { background: var(--nike-black); color: white; padding: 50px 20px; text-align: center; }
-        .tiktok-btn { display: inline-flex; align-items: center; gap: 10px; color: white; border: 1px solid white; padding: 10px 20px; border-radius: 5px; margin-top: 20px; text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        .headline { font-size: 44px; font-weight: 900; line-height: 1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
+        
+        .featured-box { 
+            display: flex; flex-wrap: wrap; align-items: center; gap: 40px; 
+            background: var(--nike-grey); padding: 45px; border-radius: 4px; margin: 20px; text-align: right;
+        }
+        .featured-info { flex: 1; min-width: 300px; }
+        .featured-img { flex: 1; min-width: 300px; }
+        .featured-img img { width: 100%; mix-blend-mode: multiply; }
+
+        .products-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; padding: 40px 20px; 
+        }
+        .product-card { text-align: right; cursor: pointer; margin-bottom: 40px; }
+        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--nike-grey); margin-bottom: 15px; }
+
+        footer { background: var(--nike-black); color: white; padding: 70px 20px; text-align: center; }
+        .map-wrapper { filter: grayscale(1) invert(1); margin: 35px auto; max-width: 800px; border: 1px solid #333; }
+        .tiktok-btn { display: inline-flex; align-items: center; gap: 10px; color: white; border: 1px solid white; padding: 12px 25px; border-radius: 30px; margin-top: 25px; text-decoration: none; font-weight: 700; }
+
+        .product-detail { display: flex; flex-wrap: wrap; gap: 60px; padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: right; }
+        .detail-img { flex: 1.5; min-width: 350px; background: var(--nike-grey); }
+        .detail-img img { width: 100%; }
+
+        @media (max-width: 768px) { .headline { font-size: 32px; } .hero { height: 60vh; } }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-logo" onclick="showPage('home')">
-            <img src="IMG_1525.png" alt="Logo">
+            <img src="IMG_1525.png" alt="AirsoftIL">
         </div>
         <div class="nav-links">
-            <div onclick="showPage('home')">דף הבית</div>
-            <div onclick="showPage('products')">מוצרים</div>
+            <div class="nav-item" onclick="showPage('home')">דף הבית</div>
+            <div class="nav-item" onclick="showPage('products')">מוצרים</div>
         </div>
     </nav>
 
     <div id="home" class="view active">
-        <div class="hero-container">
-            <img src="IMG_1540.png" alt="Hero"> 
-            <div class="hero-btn-overlay">
+        <section class="hero">
+            <img src="IMG_1540.jpeg" alt="Airsoft Hero"> 
+            <div class="hero-overlay">
                 <button class="btn-nike" onclick="showPage('products')">לכל החבילות</button>
             </div>
+        </section>
+
+        <div class="container">
+            <h2 style="font-size: 24px; font-weight: 600;">היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h2>
         </div>
 
-        <div style="text-align:center; padding: 40px 20px;">
-            <h2 style="font-size: 22px;">היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h2>
-        </div>
-
-        <div class="featured-section">
-            <p style="color: #666;">לחבילה המשתלמת⭐️</p>
-            <h2 class="headline">SIG SAUER S2D.2 PRO</h2>
-            <p>גרסה משופרת עם 2,000 כדורים ונרתיק!</p>
-            <div style="font-size: 24px; margin: 15px 0;">
-                <span style="text-decoration: line-through; color: #999; margin-left: 10px;">450₪</span>
-                <span style="font-weight: 800;">380₪</span>
+        <div class="featured-box">
+            <div class="featured-info">
+                <h3 style="color: #666; font-size: 16px; margin-bottom: 10px;">לחבילה המשתלמת⭐️</h3>
+                <h2 class="headline">SIG SAUER S2D.2 PRO</h2>
+                <p>הדגם המוצלח SIG SAUR חוזר אלינו בגרסה משופרת - S2D.2 עם 2000 כדורי קרמיקה ונרתיק לאקדח!!!</p>
+                <div style="font-size: 30px; margin: 25px 0;">
+                    <span style="text-decoration: line-through; color: #999; margin-left: 20px;">450₪</span>
+                    <span style="font-weight: 900;">380₪</span>
+                </div>
+                <ul style="list-style: none; margin-bottom: 35px; line-height: 2.2;">
+                    <li>• 100% ברזל מלא כולל המחסנית</li>
+                    <li>• מגיע עד 90 מטר!</li>
+                    <li>• רפליקה מדויקת של אקדח SIG SAUER אמיתי</li>
+                </ul>
+                <button class="btn-nike" onclick="showPage('products')">לרכישה</button>
             </div>
-            <img src="IMG_1533.png" style="width: 100%; mix-blend-mode: multiply; margin-bottom: 20px;">
-            <button class="btn-nike" style="background: black; color: white; width: 100%;" onclick="showPage('products')">לרכישה</button>
+            <div class="featured-img">
+                <img src="IMG_1533.png" alt="Main Package">
+            </div>
         </div>
     </div>
 
     <div id="products" class="view">
-        <div style="padding: 20px;">
+        <div class="container">
             <h1 class="headline">החבילות שלנו</h1>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" onclick="showPage('p-basic')">
                     <img src="IMG_1534.png">
-                    <h3>חבילה לבסיסיים</h3>
-                    <p>350₪</p>
-                    <button class="btn-nike" style="background: black; color: white; width: 100%; margin-top: 10px;">להזמנה</button>
+                    <div style="font-weight: 700; font-size: 18px;">חבילה לבסיסיים</div>
+                    <div style="margin-top: 5px;">350₪</div>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; padding: 10px; font-size: 14px;">להזמנה</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="showPage('p-expert')">
                     <img src="IMG_1533.png">
-                    <h3>חבילה למביני עניין</h3>
-                    <p>380₪</p>
-                    <button class="btn-nike" style="background: black; color: white; width: 100%; margin-top: 10px;">להזמנה</button>
+                    <div style="font-weight: 700; font-size: 18px;">חבילה למביני עניין</div>
+                    <div style="margin-top: 5px;">380₪</div>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; padding: 10px; font-size: 14px;">להזמנה</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="showPage('p-couple')">
                     <img src="IMG_1532.png">
-                    <h3>חבילה לזוג</h3>
-                    <p>680₪</p>
-                    <button class="btn-nike" style="background: black; color: white; width: 100%; margin-top: 10px;">להזמנה</button>
+                    <div style="font-weight: 700; font-size: 18px;">חבילה לזוג</div>
+                    <div style="margin-top: 5px;">680₪</div>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; padding: 10px; font-size: 14px;">להזמנה</button>
                 </div>
+                <div class="product-card" onclick="showPage('p-triple')">
+                    <img src="IMG_1532.png">
+                    <div style="font-weight: 700; font-size: 18px;">חבילה לשלושה</div>
+                    <div style="margin-top: 5px;">980₪</div>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; padding: 10px; font-size: 14px;">להזמנה</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-basic" class="view">
+        <div class="product-detail">
+            <div class="detail-img"><img src="IMG_1534.png"></div>
+            <div class="detail-content">
+                <h1 class="headline">חבילה לבסיסיים</h1>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">350₪</p>
+                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה.</p>
+                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה לבסיסיים" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-expert" class="view">
+        <div class="product-detail">
+            <div class="detail-img"><img src="IMG_1533.png"></div>
+            <div class="detail-content">
+                <h1 class="headline">חבילה למביני עניין</h1>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">380₪</p>
+                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה כולל נרתיק.</p>
+                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה למביני עניין" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <h2>אפשר להגיע לאיסוף?</h2>
+        <h2 style="font-size: 24px; margin-bottom: 15px;">אפשר להגיע לאיסוף?</h2>
         <p>כן, בתיאום מראש בוואצאפ 0542266696</p>
-        <p>אהוד מנור 3, בת ים</p>
-        <a href="https://www.tiktok.com/@airsoftisraell" class="tiktok-btn">עקבו בטיקטוק</a>
-        <p style="margin-top: 30px; font-size: 10px; opacity: 0.5;">@2026 AirsoftIL</p>
+        <p style="opacity: 0.7; margin-top: 10px;">אהוד מנור 3 בת ים</p>
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.8744747781524!2d34.74377207572765!3d32.004944473994324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b68e7d70001%3A0xc3f1c1075306660d!2z15DXl9eV15Mg157XoNeV16EgMywg15HXqiDXm9ed!5e0!3m2!1siw!2sil!4v1715694857000!5m2!1siw!2sil" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <a href="https://www.tiktok.com/@airsoftisraell?_r=1&_t=ZS-92letfNFcWY" target="_blank" class="tiktok-btn">
+            <i class="fab fa-tiktok"></i> TIKTOK
+        </a>
+        <p style="margin-top: 50px; font-size: 11px; opacity: 0.4;">@2026 copyright remains to -> AirsoftIL</p>
     </footer>
 
     <script>
