@@ -14,72 +14,79 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--nike-white); color: var(--nike-black); overflow-x: hidden; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--nike-white); color: var(--nike-black); -webkit-font-smoothing: antialiased; }
 
-        /* ניווט סטייל נייקי */
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 40px; background: var(--nike-white);
-            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5;
+        /* Navbar */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 30px; background: var(--nike-white); 
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; 
         }
         .nav-logo img { height: 50px; cursor: pointer; }
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 25px; }
         .nav-item { font-weight: 700; font-size: 16px; cursor: pointer; text-transform: uppercase; }
-        .nav-item:hover { color: var(--nike-dark-grey); }
 
-        /* ניהול דפים */
+        /* View Management */
         .view { display: none; min-height: 100vh; }
         .view.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* דף הבית - Hero */
-        .hero { position: relative; height: 80vh; background: #000; display: flex; align-items: center; justify-content: center; }
-        .hero img { width: 100%; height: 100%; object-fit: contain; }
-        .hero-content { position: absolute; bottom: 10%; text-align: center; width: 100%; }
-
-        /* כפתור נייקי קלאסי */
-        .btn-nike {
-            background: var(--nike-black); color: white; padding: 12px 30px;
-            border-radius: 30px; border: none; font-weight: 700; cursor: pointer;
-            font-size: 16px; text-decoration: none; display: inline-block;
+        /* Hero Section - The Fixed Image Part */
+        .hero { 
+            position: relative; 
+            height: 85vh; 
+            background-image: url('IMG_1540.png'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            display: flex; 
+            align-items: flex-end; 
+            justify-content: center; 
+            padding-bottom: 60px;
         }
-        .btn-nike:hover { background: #333; }
 
-        /* טקסטים וקטעים */
+        /* Nike Style Button */
+        .btn-nike { 
+            background: var(--nike-black); color: white; padding: 15px 45px; 
+            border-radius: 35px; border: none; font-weight: 700; cursor: pointer; 
+            font-size: 18px; text-decoration: none; display: inline-block;
+            transition: transform 0.2s;
+        }
+        .btn-nike:hover { transform: scale(1.05); }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-        .headline { font-size: 48px; font-weight: 900; letter-spacing: -1px; margin-bottom: 20px; text-transform: uppercase; }
+        .headline { font-size: 48px; font-weight: 900; line-height: 1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
         
-        /* מוצר ראשי בדף הבית */
+        /* Featured Box Home Page */
         .featured-box { 
             display: flex; flex-wrap: wrap; align-items: center; gap: 40px; 
-            background: var(--nike-grey); padding: 40px; border-radius: 4px; margin: 20px; text-align: right;
+            background: var(--nike-grey); padding: 45px; border-radius: 4px; margin: 20px; text-align: right;
         }
         .featured-info { flex: 1; min-width: 300px; }
         .featured-img { flex: 1; min-width: 300px; }
         .featured-img img { width: 100%; mix-blend-mode: multiply; }
 
-        /* גריד מוצרים */
-        .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; padding: 40px 20px;
+        /* Grid */
+        .products-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; padding: 40px 20px; 
         }
-        .product-card { text-align: right; cursor: pointer; margin-bottom: 30px; }
+        .product-card { text-align: right; cursor: pointer; margin-bottom: 40px; }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--nike-grey); margin-bottom: 15px; }
-        .product-card:hover img { opacity: 0.8; }
         .price-tag { font-size: 18px; font-weight: 500; margin-top: 5px; }
 
-        /* פוטר */
-        footer { background: var(--nike-black); color: white; padding: 60px 20px; text-align: center; }
-        .map-wrapper { filter: grayscale(1) invert(1); margin: 30px auto; max-width: 700px; border: 1px solid #333; }
-        .tiktok-btn { display: inline-flex; align-items: center; gap: 10px; color: white; border: 1px solid white; padding: 10px 20px; border-radius: 4px; margin-top: 20px; text-decoration: none; }
+        /* Footer */
+        footer { background: var(--nike-black); color: white; padding: 70px 20px; text-align: center; }
+        .map-wrapper { filter: grayscale(1) invert(1); margin: 35px auto; max-width: 800px; border: 1px solid #333; }
+        .tiktok-btn { display: inline-flex; align-items: center; gap: 10px; color: white; border: 1px solid white; padding: 12px 25px; border-radius: 30px; margin-top: 25px; text-decoration: none; font-weight: 700; }
 
-        /* דף מוצר בודד */
-        .product-detail { display: flex; flex-wrap: wrap; gap: 50px; padding: 60px 20px; max-width: 1100px; margin: 0 auto; text-align: right; }
+        /* Product Detail Page */
+        .product-detail { display: flex; flex-wrap: wrap; gap: 60px; padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: right; }
         .detail-img { flex: 1.5; min-width: 350px; background: var(--nike-grey); }
         .detail-img img { width: 100%; }
         .detail-content { flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; }
 
-        @media (max-width: 768px) { .headline { font-size: 32px; } .hero { height: 50vh; } }
+        @media (max-width: 768px) { .headline { font-size: 34px; } .hero { height: 65vh; } }
     </style>
 </head>
 <body>
@@ -96,29 +103,26 @@
 
     <div id="home" class="view active">
         <section class="hero">
-            <img src="IMG_1540.png" alt="Hero Gun">
-            <div class="hero-content">
-                <button class="btn-nike" onclick="showPage('products')">לכל החבילות</button>
-            </div>
+            <button class="btn-nike" onclick="showPage('products')">לכל החבילות</button>
         </section>
 
         <div class="container">
-            <h2 style="font-size: 24px; font-weight: 500;">היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h2>
+            <h2 style="font-size: 26px; font-weight: 600;">היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h2>
         </div>
 
         <div class="featured-box">
             <div class="featured-info">
-                <h3 style="color: #666; font-size: 18px;">לחבילה המשתלמת⭐️</h3>
-                <h2 class="headline" style="font-size: 36px;">SIG SAUER S2D.2 PRO</h2>
-                <p>הדגם המוצלח חוזר בגרסה משופרת עם 2000 כדורי קרמיקה ונרתיק במחיר חסר תקדים!</p>
-                <div style="font-size: 28px; margin: 20px 0;">
-                    <span style="text-decoration: line-through; color: #999; margin-left: 15px;">450₪</span>
+                <h3 style="color: #666; font-size: 18px; margin-bottom: 10px;">לחבילה המשתלמת⭐️</h3>
+                <h2 class="headline" style="font-size: 40px;">SIG SAUER S2D.2 PRO</h2>
+                <p>הדגם המוצלח SIG SAUR חוזר אלינו בגרסה משופרת - S2D.2 עם 2000 כדורי קרמיקה ונרתיק לאקדח!!! במחיר חסר תקדים</p>
+                <div style="font-size: 32px; margin: 25px 0;">
+                    <span style="text-decoration: line-through; color: #999; margin-left: 20px;">450₪</span>
                     <span style="font-weight: 900;">380₪</span>
                 </div>
-                <ul style="list-style: none; margin-bottom: 30px; line-height: 2;">
+                <ul style="list-style: none; margin-bottom: 35px; line-height: 2.2; font-size: 17px;">
                     <li>• 100% ברזל מלא כולל המחסנית</li>
-                    <li>• מגיע עד 90 מטר! כ-20 מטר יותר מהישן</li>
-                    <li>• רפליקה מדויקת של SIG SAUER</li>
+                    <li>• מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן</li>
+                    <li>• רפליקה מדויקת של אקדח SIG SAUER אמיתי</li>
                 </ul>
                 <button class="btn-nike" onclick="showPage('products')">לרכישה</button>
             </div>
@@ -130,31 +134,35 @@
 
     <div id="products" class="view">
         <div class="container">
-            <h1 class="headline">כל החבילות</h1>
+            <h1 class="headline">החבילות שלנו</h1>
             <div class="products-grid">
                 <div class="product-card" onclick="showPage('p-basic')">
                     <img src="IMG_1534.png">
-                    <div class="product-name" style="font-weight: 700;">חבילה לבסיסיים</div>
+                    <div style="font-weight: 700; font-size: 20px;">חבילה לבסיסיים</div>
                     <div class="price-tag">350₪</div>
-                    <button class="btn-nike" style="width: 100%; margin-top: 15px;">להזמנה</button>
+                    <p style="color: #777; font-size: 14px; margin-top: 5px;">אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה</p>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; border-radius: 4px; font-size: 14px; padding: 10px;">להזמנה</button>
                 </div>
                 <div class="product-card" onclick="showPage('p-expert')">
                     <img src="IMG_1533.png">
-                    <div class="product-name" style="font-weight: 700;">חבילה למביני עניין</div>
+                    <div style="font-weight: 700; font-size: 20px;">חבילה למביני עניין</div>
                     <div class="price-tag">380₪</div>
-                    <button class="btn-nike" style="width: 100%; margin-top: 15px;">להזמנה</button>
+                    <p style="color: #777; font-size: 14px; margin-top: 5px;">אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה עם נרתיק</p>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; border-radius: 4px; font-size: 14px; padding: 10px;">להזמנה</button>
                 </div>
                 <div class="product-card" onclick="showPage('p-couple')">
                     <img src="IMG_1532.png">
-                    <div class="product-name" style="font-weight: 700;">חבילה לזוג</div>
+                    <div style="font-weight: 700; font-size: 20px;">חבילה לזוג</div>
                     <div class="price-tag">680₪</div>
-                    <button class="btn-nike" style="width: 100%; margin-top: 15px;">להזמנה</button>
+                    <p style="color: #777; font-size: 14px; margin-top: 5px;">2 אקדחי אוויר S2D.2 ו-4,000 כדורי קרמיקה</p>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; border-radius: 4px; font-size: 14px; padding: 10px;">להזמנה</button>
                 </div>
                 <div class="product-card" onclick="showPage('p-triple')">
                     <img src="IMG_1532.png">
-                    <div class="product-name" style="font-weight: 700;">חבילה לשלושה</div>
+                    <div style="font-weight: 700; font-size: 20px;">חבילה לשלושה</div>
                     <div class="price-tag">980₪</div>
-                    <button class="btn-nike" style="width: 100%; margin-top: 15px;">להזמנה</button>
+                    <p style="color: #777; font-size: 14px; margin-top: 5px;">3 אקדחי אוויר S2D.2 ו-6,000 כדורי קרמיקה</p>
+                    <button class="btn-nike" style="width: 100%; margin-top: 15px; border-radius: 4px; font-size: 14px; padding: 10px;">להזמנה</button>
                 </div>
             </div>
         </div>
@@ -165,9 +173,9 @@
             <div class="detail-img"><img src="IMG_1534.png"></div>
             <div class="detail-content">
                 <h1 class="headline">חבילה לבסיסיים</h1>
-                <p style="font-size: 24px; margin-bottom: 20px;">350₪</p>
-                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה.</p>
-                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה לבסיסיים" class="btn-nike" style="margin-top: 30px; text-align: center;">הזמנה בוואצאפ</a>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">350₪</p>
+                <p style="font-size: 18px;">אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה. החבילה המושלמת למתחילים.</p>
+                <a href="https://wa.me/972542266696?text=אני מעוניין בחבילה לבסיסיים" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
             </div>
         </div>
     </div>
@@ -177,9 +185,9 @@
             <div class="detail-img"><img src="IMG_1533.png"></div>
             <div class="detail-content">
                 <h1 class="headline">חבילה למביני עניין</h1>
-                <p style="font-size: 24px; margin-bottom: 20px;">380₪</p>
-                <p>אקדח אוויר S2D.2, 2,000 כדורי קרמיקה עם נרתיק מעור איכותי.</p>
-                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה למביני עניין" class="btn-nike" style="margin-top: 30px; text-align: center;">הזמנה בוואצאפ</a>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">380₪</p>
+                <p style="font-size: 18px;">אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה כולל נרתיק מעור איכותי!</p>
+                <a href="https://wa.me/972542266696?text=אני מעוניין בחבילה למביני עניין" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
             </div>
         </div>
     </div>
@@ -189,9 +197,9 @@
             <div class="detail-img"><img src="IMG_1532.png"></div>
             <div class="detail-content">
                 <h1 class="headline">חבילה לזוג</h1>
-                <p style="font-size: 24px; margin-bottom: 20px;">680₪</p>
-                <p>2 אקדחי אוויר S2D.2 ו-4,000 כדורי קרמיקה.</p>
-                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה לזוג" class="btn-nike" style="margin-top: 30px; text-align: center;">הזמנה בוואצאפ</a>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">680₪</p>
+                <p style="font-size: 18px;">חבילה זוגית: 2 אקדחי אוויר S2D.2 ו-4,000 כדורי קרמיקה.</p>
+                <a href="https://wa.me/972542266696?text=אני מעוניין בחבילה לזוג" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
             </div>
         </div>
     </div>
@@ -201,37 +209,32 @@
             <div class="detail-img"><img src="IMG_1532.png"></div>
             <div class="detail-content">
                 <h1 class="headline">חבילה לשלושה</h1>
-                <p style="font-size: 24px; margin-bottom: 20px;">980₪</p>
-                <p>3 אקדחי אוויר S2D.2 ו-6,000 כדורי קרמיקה.</p>
-                <a href="https://wa.me/972542266696?text=היי, אני מעוניין בחבילה לשלושה" class="btn-nike" style="margin-top: 30px; text-align: center;">הזמנה בוואצאפ</a>
+                <p style="font-size: 26px; font-weight: 700; margin-bottom: 20px;">980₪</p>
+                <p style="font-size: 18px;">חבילה מורחבת: 3 אקדחי אוויר S2D.2 ו-6,000 כדורי קרמיקה.</p>
+                <a href="https://wa.me/972542266696?text=אני מעוניין בחבילה לשלושה" class="btn-nike" style="margin-top: 40px; text-align: center;">להזמנה בוואצאפ</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="container" style="padding: 0;">
-            <h2 style="font-size: 24px; margin-bottom: 10px;">אפשר להגיע לאיסוף?</h2>
-            <p>כן, כדי לתאם זמני הגעה תשלח/י לנו הודעה בוואצאפ 054-2266696</p>
-            <p style="opacity: 0.7;">כתובת - אהוד מנור 3 בת ים , לא להגיע ללא תיאום</p>
-            
-            <div class="map-wrapper">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.470514104044!2d34.7431327!3d31.9752392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b3780598801d%3A0xc3f587d559a43a68!2zQUhVRCBNQU5PUiAzLCBCQVQgWUFNIElTUkFFTA!5e0!3m2!1sen!2sil!4v1700000000000" width="100%" height="300" style="border:0;" allowfullscreen=""></iframe>
-            </div>
-
-            <a href="https://www.tiktok.com/@airsoftisraell?_r=1&_t=ZS-92letfNFcWY" target="_blank" class="tiktok-btn">
-                <i class="fab fa-tiktok"></i> עקבו אחרינו בטיקטוק
-            </a>
-            <p style="margin-top: 40px; font-size: 11px; opacity: 0.5;">@2026 copyright remains to -> AirsoftIL</p>
+        <h2 style="font-size: 28px; margin-bottom: 15px;">אפשר להגיע לאיסוף?</h2>
+        <p style="font-size: 18px;">כן, כדי לתאם זמני הגעה תשלח/י לנו הודעה בוואצאפ 0542266696</p>
+        <p style="opacity: 0.7; margin-top: 10px;">כתובת - אהוד מנור 3 בת ים , לא להגיע ללא תיאום</p>
+        
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3383.123!2d34.745!3d31.987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b48!2zQWh1ZCBNYW5vciBTdCAzLCBCYXQgWWFtLCBJc3JhZWw!5e0!3m2!1sen!2sil!4v1" width="100%" height="350" style="border:0;" allowfullscreen=""></iframe>
         </div>
+
+        <a href="https://www.tiktok.com/@airsoftisraell?_r=1&_t=ZS-92letfNFcWY" target="_blank" class="tiktok-btn">
+            <i class="fab fa-tiktok"></i> TIKTOK
+        </a>
+        <p style="margin-top: 50px; font-size: 12px; opacity: 0.5;">@2026 copyright remains to -> AirsoftIL</p>
     </footer>
 
     <script>
-        function showPage(pageId) {
-            // הסתרת כל הדפים
+        function showPage(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            // הצגת הדף המבוקש
-            document.getElementById(pageId).classList.add('active');
-            // גלילה לראש הדף
+            document.getElementById(id).classList.add('active');
             window.scrollTo(0,0);
         }
     </script>
