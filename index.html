@@ -1,60 +1,92 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>לוח זמנים לשאטלים - גבעתי</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      background-color: #f2f2f2;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    table {
-      width: 60%;
-      margin: 0 auto;
-      border-collapse: collapse;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
-      text-align: center;
-    }
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirsoftIL | החנות הרשמית</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>לוח זמנים לשאטלים לבא"ח גבעתי</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>עיר מוצא</th>
-        <th>שעת יציאה</th>
-        <th>יעד</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>ראשון לציון (תחנת ראשונים)</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>חיפה</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>עפולה</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>באר שבע</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>תל אביב</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>בית שמש</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>רמת הגולן</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>טבריה</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-      <tr><td>כפר יונה</td><td>07:00</td><td>בא"ח גבעתי</td></tr>
-    </tbody>
-  </table>
+
+    <section id="home">
+        <div class="hero">
+            <img src="hero-gun.jpg" alt="SIG SAUER 2D.2" class="hero-img">
+            <div class="hero-content">
+                <button class="btn-outline" onclick="scrollToSection('products')">לכל החבילות</button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h1>היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h1>
+            <p class="subtitle">משלוחים מהירים לכל המדינה</p>
+        </div>
+
+        <div class="main-product-promo">
+            <h2>לחבילה המשתלמת ⭐</h2>
+            <p>הדגם המוצלח SIG SAUER חוזר אלינו בגרסה משופרת - S2D.2 עם 2,000 כדורי קרמיקה ונרתיק לאקדח!!! במחיר חסר תקדים</p>
+            <div class="price-tag">
+                <span class="old-price">450₪</span>
+                <span class="new-price">380₪</span>
+            </div>
+            <ul class="specs">
+                <li>100% ברזל מלא כולל המחסנית</li>
+                <li>מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן</li>
+                <li>רפליקה מדויקת של אקדח SIG SAUER אמיתי</li>
+            </ul>
+            <img src="main-bundle.jpg" alt="חבילה משתלמת" class="promo-img">
+            <button class="btn-outline" onclick="scrollToSection('products')">לרכישה</button>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="products">
+        <h2 class="section-title">החבילות שלנו</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="basic-pack.jpg" alt="חבילה לבסיסיים">
+                <h3>חבילה לבסיסיים</h3>
+                <p class="card-price">350₪</p>
+                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה</p>
+                <button class="btn-outline">להזמנה</button>
+            </div>
+
+            <div class="product-card">
+                <img src="pro-pack.jpg" alt="חבילה למביני עניין">
+                <h3>חבילה למביני עניין</h3>
+                <p class="card-price">380₪</p>
+                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה עם נרתיק מעור</p>
+                <button class="btn-outline">להזמנה</button>
+            </div>
+
+            <div class="product-card">
+                <img src="couple-pack.jpg" alt="חבילה לזוג">
+                <h3>חבילה לזוג</h3>
+                <p class="card-price">680₪</p>
+                <p>2 אקדחי אוויר S2D.2 ו-4,000 כדורי קרמיקה</p>
+                <button class="btn-outline">להזמנה</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact-info">
+            <h3>אפשר להגיע לאיסוף?</h3>
+            <p>כן, כדי לתאם זמני הגעה תשלח/י לנו הודעה בוואצאפ <a href="https://wa.me/972542266696">054-2266696</a></p>
+            <p>כתובת - אהוד מנור 3, בת ים (לא להגיע ללא תיאום)</p>
+        </div>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.463636248386!2d34.7461!3d31.9865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b4860b779435%3A0x678787f7a83d4768!2zQUhVRCBNQU5PUiAzIEJBVCBZQU0!5e0!3m2!1sen!2sil!4v1700000000000" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <p class="copyright">@2026 0542266696 copyright remains to - AirsoftIL</p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
