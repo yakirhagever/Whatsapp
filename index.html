@@ -3,97 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AirsoftIL | Official</title>
+    <title>AirsoftIL | Official Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700;800&display=swap');
 
-        /* --- NIKE STYLE CORE --- */
+        /* --- עיצוב כללי - סגנון נייק --- */
         :root {
             --nike-black: #111111;
             --nike-white: #ffffff;
-            --nike-grey: #f5f5f5;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Assistant', -apple-system, sans-serif; background-color: var(--nike-white); color: var(--nike-black); line-height: 1.6; }
+        body { font-family: 'Assistant', -apple-system, sans-serif; background-color: var(--nike-white); color: var(--nike-black); line-height: 1.6; overflow-x: hidden; }
 
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: var(--nike-white); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eeeeee; }
-        .nav-logo img { height: 40px; cursor: pointer; }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-item { font-weight: 700; font-size: 15px; cursor: pointer; text-transform: uppercase; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--nike-white); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eeeeee; }
+        .nav-logo img { height: 35px; cursor: pointer; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-item { font-weight: 700; font-size: 14px; cursor: pointer; text-transform: uppercase; }
 
         .view { display: none; min-height: 100vh; }
-        .view.active { display: block; animation: pageFade 0.4s ease-out; }
-        @keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
+        .view.active { display: block; }
 
-        /* Hero */
-        .hero { position: relative; width: 100%; height: 65vh; background: #000; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
-        .hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
-        .hero-content { position: relative; z-index: 10; padding-bottom: 50px; }
-        
-        /* כפתור ה-Outline הלבן שביקשת */
-        .btn-hero { 
-            background: transparent; color: white; padding: 12px 35px; border-radius: 30px; 
-            border: 2px solid white; font-weight: 700; cursor: pointer; font-size: 16px; 
-            transition: var(--transition);
-        }
-        .btn-hero:hover { background: white; color: black; }
+        /* --- דף הבית --- */
+        .hero { position: relative; width: 100%; height: 50vh; background: #000; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+        .hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero-content { position: relative; z-index: 10; padding-bottom: 30px; }
+        .btn-hero { background: transparent; color: white; padding: 10px 30px; border-radius: 30px; border: 2px solid white; font-weight: 700; cursor: pointer; }
 
-        .brand-statement { padding: 60px 20px; text-align: center; }
-        .brand-statement h2 { font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+        .brand-statement { padding: 40px 20px; text-align: center; }
+        .brand-statement h2 { font-size: 28px; font-weight: 800; }
 
-        /* Featured Product Section */
-        .featured-product { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .featured-info { text-align: right; }
-        .featured-info h2 { font-size: 40px; font-weight: 800; margin: 15px 0; }
-        .featured-img { background: #fff; padding: 20px; }
-        .featured-img img { width: 100%; mix-blend-mode: multiply; }
+        .featured-product { padding: 20px; text-align: right; border-bottom: 10px solid #f5f5f5; }
+        .featured-img img { width: 100%; border-radius: 4px; }
+        .featured-info h2 { font-size: 32px; font-weight: 800; margin: 10px 0; }
 
-        /* Products Grid */
-        .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 40px 20px; max-width: 1300px; margin: 0 auto; }
+        /* --- דף מוצרים --- */
+        .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
         .product-card { text-align: right; }
-        .product-card-img { background: #fff; margin-bottom: 15px; }
-        .product-card-img img { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
-        .btn-black { background: var(--nike-black); color: white; padding: 12px 28px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; font-size: 16px; transition: var(--transition); text-decoration: none; display: inline-block; text-align: center; }
+        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #f5f5f5; }
+        .btn-black { background: var(--nike-black); color: white; padding: 12px; border-radius: 30px; border: none; font-weight: 700; width: 100%; margin-top: 10px; cursor: pointer; text-align: center; text-decoration: none; display: block; }
 
-        /* Shipping Selection Design */
-        .shipping-selector { margin: 30px 0; text-align: right; }
-        .shipping-option { border: 2px solid #eee; padding: 20px; border-radius: 4px; cursor: pointer; margin-bottom: 15px; transition: var(--transition); }
+        /* --- דף מוצר אישי - מותאם לטלפון --- */
+        .detail-layout { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+        .detail-img-container img { width: 100%; border-radius: 8px; }
+        .product-features { list-style: none; margin: 20px 0; padding: 0; text-align: right; }
+        .product-features li { position: relative; padding-right: 20px; margin-bottom: 8px; font-size: 15px; }
+        .product-features li::before { content: '•'; position: absolute; right: 0; font-weight: bold; }
+
+        /* --- מערכת בחירת משלוח --- */
+        .shipping-selector { margin: 25px 0; text-align: right; }
+        .shipping-option { border: 2px solid #eee; padding: 15px; border-radius: 8px; cursor: pointer; margin-bottom: 10px; }
         .shipping-option.selected { border-color: black; background: #fafafa; }
-        .shipping-option h4 { font-weight: 800; margin-bottom: 5px; }
-        .shipping-option p { font-size: 14px; color: #666; }
+        .shipping-option h4 { font-weight: 800; }
 
-        /* --- הזרקת הקוד המקורי שלך לטופס (Option 1) --- */
-        #formWrapper { display: none; background: white; padding: 25px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 100%; max-width: 450px; border-top: 5px solid black; margin: 20px auto; text-align: right; }
+        /* --- הקוד המקורי של הטופס שלך (Option 1) --- */
+        #formWrapper { display: none; background: white; padding: 25px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 100%; max-width: 450px; border-top: 5px solid black; margin: 10px auto; text-align: right; }
         #formWrapper h3 { text-align: center; font-weight: 300; margin-bottom: 25px; color: black; }
         .input-group { margin-bottom: 20px; text-align: right; position: relative; }
         .input-group label { font-size: 11px; font-weight: bold; color: #888; display: block; margin-bottom: 8px; }
         .input-group input { width: 100%; padding: 12px 10px; border: none; border-bottom: 2px solid #eee; font-size: 16px; outline: none; background: #fafafa; color: black; border-radius: 0; }
         .input-group input:focus { border-bottom-color: black; }
+        #email-error { color: red; font-size: 12px; display: none; margin-top: 5px; font-weight: bold; }
         .btn-link { display: block; background: black; color: white !important; text-decoration: none !important; padding: 18px; text-align: center; font-size: 18px; font-weight: bold; width: 100%; border: none; cursor: pointer; margin-top: 10px; }
+        .autocomplete-items { position: absolute; border: 1px solid #d4d4d4; z-index: 999; top: 100%; left: 0; right: 0; background: #fff; max-height: 200px; overflow-y: auto; }
+        .autocomplete-item { padding: 12px; cursor: pointer; border-bottom: 1px solid #eee; color: black; }
 
-        /* --- הזרקת הקוד המקורי שלך לוואצאפ (Option 2) --- */
+        /* --- הקוד המקורי של הוואצאפ שלך (Option 2) --- */
         #whatsappWrapper { display: none; text-align: center; margin-top: 20px; }
-        .whatsapp-button { background: transparent; color: black; border: 1px solid black; padding: 12px 60px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin: 20px auto; display: block; text-decoration: none; text-align: center; width: fit-content; font-weight: bold; }
+        .whatsapp-button-orig { background: transparent; color: black; border: 1px solid black; padding: 12px 60px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; display: inline-block; text-decoration: none; width: 100%; font-weight: bold; }
 
         /* Footer */
-        .main-footer { background: var(--nike-black); color: white; padding: 60px 30px; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; text-align: right; }
-        .map-container { width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-top: 20px; }
-
-        @media (max-width: 768px) {
-            .featured-product, .footer-grid, .detail-layout { grid-template-columns: 1fr !important; }
-            .brand-statement h2 { font-size: 28px; }
-            .products-grid { grid-template-columns: 1fr 1fr; } /* נשאר 2 בשורה במובייל לפי בקשתך */
-        }
-
-        .detail-layout { padding: 40px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; }
-        .product-features { list-style: none; margin: 20px 0; padding: 0; text-align: right; }
-        .product-features li { position: relative; padding-right: 20px; margin-bottom: 10px; font-size: 16px; }
-        .product-features li::before { content: '•'; position: absolute; right: 0; font-weight: bold; }
+        .main-footer { background: var(--nike-black); color: white; padding: 40px 20px; text-align: right; }
+        .map-container { width: 100%; height: 200px; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -101,156 +84,106 @@
     <nav>
         <div class="nav-logo" onclick="showPage('home')"><img src="IMG_1525.png" alt="AirsoftIL"></div>
         <div class="nav-links">
-            <div class="nav-item" onclick="showPage('home')">דף הבית</div>
-            <div class="nav-item" onclick="showPage('products')">מוצרים</div>
+            <div class="nav-item" onclick="showPage('home')">בית</div>
+            <div class="nav-item" onclick="showPage('products')">חבילות</div>
         </div>
     </nav>
 
     <div id="home" class="view active">
-        <section class="hero">
-            <img src="IMG_1540.jpeg" alt="Hero">
-            <div class="hero-content"><button class="btn-hero" onclick="showPage('products')">לכל החבילות</button></div>
-        </section>
-
-        <div class="brand-statement">
-            <h2>היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h2>
-        </div>
-
+        <section class="hero"><img src="IMG_1540.jpeg"><div class="hero-content"><button class="btn-hero" onclick="showPage('products')">לקנייה</button></div></section>
+        <div class="brand-statement"><h2>היבואן הרשמי של SIG SAUER 2D.2</h2></div>
+        
         <section class="featured-product">
             <div class="featured-img"><img src="IMG_1533.png"></div>
             <div class="featured-info">
-                <p>לחבילה המשתלמת⭐️</p>
-                <h2>SIG SAUER S2D.2 PRO</h2>
-                <p>הדגם המוצלח בגרסה משופרת עם 2000 כדורי קרמיקה ונרתיק!</p>
-                <div style="font-size: 24px; margin: 15px 0;">
-                    <span style="text-decoration: line-through; color: #aaa; margin-left: 10px;">450₪</span>
-                    <span style="font-weight: 800;">380₪</span>
-                </div>
-                <ul class="product-features">
-                    <li>100% ברזל מלא כולל המחסנית</li>
-                    <li>מגיע עד 90 מטר!</li>
-                    <li>רפליקה מדויקת</li>
-                </ul>
-                <button class="btn-black" onclick="showPage('products')">לרכישה</button>
+                <p>הבחירה של המקצוענים⭐️</p>
+                <h2>SIG SAUER PRO</h2>
+                <div style="font-size: 22px; margin-bottom: 10px;"><span style="text-decoration: line-through; color: #aaa;">450₪</span> <b>380₪</b></div>
+                <button class="btn-black" onclick="showProduct('p-expert')">להזמנה מהירה</button>
             </div>
         </section>
 
         <footer class="main-footer">
-            <div class="footer-grid">
-                <div>
-                    <h3 style="font-size: 22px; margin-bottom: 15px;">אפשר להגיע לאיסוף?</h3>
-                    <p>כן, בתיאום מראש בוואצאפ 0542266696</p>
-                    <p style="color: #888; font-size: 14px;">אהוד מנור 3, בת ים (לא להגיע ללא תיאום)</p>
-                    <a href="https://www.tiktok.com/@airsoftisraell?_r=1&_t=ZS-92letfNFcWY" target="_blank" style="color: white; font-size: 28px; display: block; margin-top: 20px;">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                </div>
-                <div class="map-container">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0; filter: grayscale(1) invert(0.9);" src="https://maps.google.com/maps?q=אהוד%20מנור%203,%20בת%20ים&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 40px; font-size: 11px; color: #555;">@2026 copyright remains to -> AirsoftIL</p>
+            <h3>איסוף עצמי</h3>
+            <p>בת ים, אהוד מנור 3 (בתיאום)</p>
+            <div class="map-container"><iframe width="100%" height="100%" frameborder="0" src="http://googleusercontent.com/maps.google.com/9"></iframe></div>
         </footer>
     </div>
 
     <div id="products" class="view">
-        <div style="padding: 40px 30px; text-align: right;"><h1 style="font-size: 36px; font-weight: 800;">החבילות שלנו</h1></div>
+        <div style="padding: 20px; text-align: right;"><h1>החבילות שלנו</h1></div>
         <div class="products-grid">
-            <div class="product-card">
-                <div class="product-card-img"><img src="IMG_1534.png"></div>
-                <h3>חבילה לבסיסיים</h3><p>350₪</p><button class="btn-black" onclick="showProduct('p-basic')">להזמנה</button>
-            </div>
-            <div class="product-card">
-                <div class="product-card-img"><img src="IMG_1533.png"></div>
-                <h3>חבילה למביני עניין</h3><p>380₪</p><button class="btn-black" onclick="showProduct('p-expert')">להזמנה</button>
-            </div>
-            <div class="product-card">
-                <div class="product-card-img"><img src="IMG_1532.png"></div>
-                <h3>חבילה לזוג</h3><p>680₪</p><button class="btn-black" onclick="showProduct('p-couple')">להזמנה</button>
-            </div>
-            <div class="product-card">
-                <div class="product-card-img"><img src="IMG_1532.png"></div>
-                <h3>חבילה לשלושה</h3><p>980₪</p><button class="btn-black" onclick="showProduct('p-triple')">להזמנה</button>
-            </div>
-        </div>
-        <div style="padding: 50px 0; text-align: center; border-top: 1px solid #eee;">
-            <button class="btn-black" style="background: white; color: black; border: 1px solid black;" onclick="showPage('home')">חזרה לדף הבית</button>
+            <div class="product-card"><img src="IMG_1534.png"><h3>חבילה לבסיסיים</h3><p>350₪</p><button class="btn-black" onclick="showProduct('p-basic')">להזמנה</button></div>
+            <div class="product-card"><img src="IMG_1533.png"><h3>חבילה למביני עניין</h3><p>380₪</p><button class="btn-black" onclick="showProduct('p-expert')">להזמנה</button></div>
+            <div class="product-card"><img src="IMG_1532.png"><h3>חבילה לזוג</h3><p>680₪</p><button class="btn-black" onclick="showProduct('p-couple')">להזמנה</button></div>
+            <div class="product-card"><img src="IMG_1532.png"><h3>חבילה לשלושה</h3><p>980₪</p><button class="btn-black" onclick="showProduct('p-triple')">להזמנה</button></div>
         </div>
     </div>
 
     <div id="product-detail-view" class="view">
         <div class="detail-layout">
             <div class="detail-img-container"><img id="detail-img" src=""></div>
-            <div>
-                <h1 id="detail-title" style="font-size: 40px; font-weight: 800;"></h1>
-                <p id="detail-price" style="font-size: 28px; font-weight: 700; margin: 15px 0;"></p>
-                <p id="detail-desc" style="font-size: 18px;"></p>
+            <div class="detail-info">
+                <h1 id="detail-title" style="font-weight: 800; font-size: 32px;"></h1>
+                <p id="detail-price" style="font-size: 24px; font-weight: 700; color: #d00;"></p>
                 
-                <ul class="product-features" id="detail-features">
-                    </ul>
+                <ul class="product-features">
+                    <li>100% ברזל מלא כולל מחסנית</li>
+                    <li>עוצמה מקסימלית: עד 90 מטר</li>
+                    <li>העתק מדויק (רפליקה) של SIG SAUER</li>
+                </ul>
 
                 <div class="shipping-selector">
                     <h3>שיטת משלוח:</h3>
                     <div class="shipping-option" id="opt1" onclick="selectShipping(1)">
-                        <h4>1. משלוח בדואר לכל המדינה (חינם)</h4>
-                        <p>תשלום באשראי | 4-7 ימי עסקים</p>
+                        <h4>1. משלוח דואר (חינם)</h4>
+                        <p>באשראי | 4-7 ימי עסקים</p>
                     </div>
                     <div class="shipping-option" id="opt2" onclick="selectShipping(2)">
-                        <h4>2. משלוח עם שליח שלנו (50₪)</h4>
-                        <p>תשלום במזומן / ביט | תיאום יום ושעה</p>
+                        <h4>2. שליח עד הבית (50₪)</h4>
+                        <p>במזומן / ביט | תיאום מהיר</p>
                     </div>
                 </div>
 
                 <div id="formWrapper">
                     <h3>פרטי משלוח ותשלום</h3>
+                    <div class="input-group"><label>שם מלא</label><input type="text" id="name" placeholder="ישראל ישראלי" required oninput="updateLink()"></div>
+                    <div class="input-group"><label>מספר טלפון</label><input type="tel" id="phone" placeholder="050-0000000" required oninput="updateLink()"></div>
                     <div class="input-group">
-                        <label>שם מלא</label>
-                        <input type="text" placeholder="ישראל ישראלי">
+                        <label>אימייל</label>
+                        <input type="email" id="email" placeholder="example@gmail.com" required oninput="updateLink()">
+                        <div id="email-error">אימייל לא תקין</div>
                     </div>
                     <div class="input-group">
-                        <label>טלפון</label>
-                        <input type="tel" placeholder="050-0000000">
+                        <label>עיר / יישוב</label>
+                        <input type="text" id="cityInput" placeholder="התחל להקליד עיר..." autocomplete="off" required oninput="updateLink()">
+                        <div id="autocomplete-list" class="autocomplete-items"></div>
                     </div>
-                    <div class="input-group">
-                        <label>כתובת מלאה (עיר, רחוב, מספר בית)</label>
-                        <input type="text" placeholder="למשל: הרצל 10, תל אביב">
-                    </div>
-                    <div id="email-error">נא למלא את כל השדות</div>
-                    <button class="btn-link">עבור לתשלום מאובטח</button>
+                    <div class="input-group"><label>רחוב ומספר בית</label><input type="text" id="address" placeholder="הרצל 10, דירה 5" required oninput="updateLink()"></div>
+                    <a href="javascript:void(0)" id="payLink" class="btn-link" onclick="handlePayClick(event)">אישור לתשלום</a>
                 </div>
 
                 <div id="whatsappWrapper">
-                    <a id="wa-link" href="#" class="whatsapp-button">להזמנה</a>
+                    <a id="wa-link-orig" href="#" class="whatsapp-button-orig">להזמנה בוואצאפ</a>
                 </div>
 
-                <button onclick="showPage('products')" style="margin-top: 30px; background: none; border: none; font-weight: 700; cursor: pointer; text-decoration: underline;">חזרה למוצרים</button>
+                <button onclick="showPage('products')" style="margin-top: 30px; background: none; border: none; text-decoration: underline; font-weight: bold; cursor: pointer;">חזרה לחבילות</button>
             </div>
         </div>
     </div>
 
     <script>
         const productsData = {
-            'p-basic': { 
-                title: 'חבילה לבסיסיים', price: '350₪', img: 'IMG_1534.png',
-                desc: 'אקדח אוויר ו2,000 כדורי קרמיקה',
-                features: ['100% ברזל מלא (כולל המחסנית)', 'מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן', 'רפליקה מדויקת של אקדח SIG SAUER']
-            },
-            'p-expert': { 
-                title: 'חבילה למביני עניין', price: '380₪', img: 'IMG_1533.png',
-                desc: 'אקדח אוויר ו2,000 כדורי קרמיקה עם נרתיק',
-                features: ['100% ברזל מלא (כולל המחסנית)', 'מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן', 'רפליקה מדויקת של אקדח SIG SAUER']
-            },
-            'p-couple': { 
-                title: 'חבילה לזוג', price: '680₪', img: 'IMG_1532.png',
-                desc: '2 אקדחי אוויר ו4,000 כדורי קרמיקה עם 2 נרתיקים לאקדח',
-                features: ['100% ברזל מלא (כולל המחסנית)', 'מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן', 'רפליקה מדויקת של אקדח SIG SAUER']
-            },
-            'p-triple': { 
-                title: 'חבילה לשלושה', price: '980₪', img: 'IMG_1532.png',
-                desc: '3 אקדחי אוויר S2D.2 ו6,000 כדורי קרמיקה עם 3 נרתיקים לאקדח',
-                features: ['100% ברזל מלא (כולל המחסנית)', 'מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן', 'רפליקה מדויקת של אקדח SIG SAUER אמיתי']
-            }
+            'p-basic': { title: 'חבילה לבסיסיים', price: 350, img: 'IMG_1534.png' },
+            'p-expert': { title: 'חבילה למביני עניין', price: 380, img: 'IMG_1533.png' },
+            'p-couple': { title: 'חבילה לזוג', price: 680, img: 'IMG_1532.png' },
+            'p-triple': { title: 'חבילה לשלושה', price: 980, img: 'IMG_1532.png' }
         };
+
+        const cities = ["אביאל","אביבים","אביגדור","אביחיל","אביטל","אביב","אבני חפץ","אופקים","אור עקיבא","אורנית","אזור","אילת","אלוני הבשן","אלעד","אלפי מנשה","אלקנה","אריאל","אשדוד","אשקלון","באר שבע","בני ברק","בית אל","בית דגן","בית שאן","בית שמש","ביתר עילית","בנימינה","בת ים","גבעת שמואל","גבעתיים","גדרה","גן יבנה","גני תקווה","הוד השרון","הרצליה","חדרה","חולון","חיפה","חריש","טבריה","טירת כרמל","יבנה","יהוד-מונוסון","ירושלים","כוכב יאיר","כפר יונה","כפר סבא","כרמיאל","לוד","מבשרת ציון","מגדל העמק","מודיעין-מכבים-רעות","מודיעין עילית","מטולה","מעלה אדומים","מעלות-תרשיחא","מצפה רמון","נהריה","נס ציונה","נצרת","נשר","נתיבות","נתניה","עכו","עפולה","ערד","עתלית","פרדס חנה-כרכור","פתח תקווה","צפת","קדימה-צורן","קצרין","קרית אונו","קרית אתא","קרית ביאליק","קרית גת","קרית ים","קרית מוצקין","קרית מלאכי","קרית שמונה","ראש העין","ראש פינה","ראשון לציון","רחובות","רכסים","רמלה","רמת גן","רמת השרון","רמת ישי","רעננה","שדרות","שהם","תל אביב-יפו"].sort();
+
+        let currentPrice = 380;
+        let currentOrderID = "";
 
         function showPage(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -260,39 +193,89 @@
 
         function showProduct(id) {
             const data = productsData[id];
+            currentPrice = data.price;
             document.getElementById('detail-title').innerText = data.title;
-            document.getElementById('detail-price').innerText = data.price;
-            document.getElementById('detail-desc').innerText = data.desc;
+            document.getElementById('detail-price').innerText = data.price + ' ₪';
             document.getElementById('detail-img').src = data.img;
             
-            const featList = document.getElementById('detail-features');
-            featList.innerHTML = '';
-            data.features.forEach(f => {
-                const li = document.createElement('li');
-                li.innerText = f;
-                featList.appendChild(li);
-            });
-
-            document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
             document.getElementById('formWrapper').style.display = 'none';
             document.getElementById('whatsappWrapper').style.display = 'none';
-
+            document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
+            
             showPage('product-detail-view');
-
-            const waText = encodeURIComponent(`היי, אני מעוניין ב${data.title} במשלוח שליח מהיר`);
-            document.getElementById('wa-link').href = `https://api.whatsapp.com/send?phone=972542266696&text=${waText}`;
+            updateLink();
+            
+            const waText = encodeURIComponent(`היי, אני מעוניין ב${data.title} במשלוח שליח (תשלום מזומן/ביט)`);
+            document.getElementById('wa-link-orig').href = `https://api.whatsapp.com/send?phone=972542266696&text=${waText}`;
         }
 
         function selectShipping(num) {
             document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
             document.getElementById('opt' + num).classList.add('selected');
-            if(num === 1) {
-                document.getElementById('formWrapper').style.display = 'block';
-                document.getElementById('whatsappWrapper').style.display = 'none';
-            } else {
-                document.getElementById('formWrapper').style.display = 'none';
-                document.getElementById('whatsappWrapper').style.display = 'block';
+            document.getElementById('formWrapper').style.display = (num === 1) ? 'block' : 'none';
+            document.getElementById('whatsappWrapper').style.display = (num === 2) ? 'block' : 'none';
+        }
+
+        /* --- פונקציות הטופס שלך בדיוק --- */
+        function generateOrderID() {
+            return "ORD-" + Date.now().toString().slice(-6) + Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+        function updateLink() {
+            currentOrderID = generateOrderID();
+            const paymentUrl = "https://api.robinpay.co.il/cardcom/public-load/a38dbb06-2159-4e91-b053-16177dd8f54a?amount=" + currentPrice + "&order_id=" + currentOrderID;
+            const link = document.getElementById('payLink');
+            link.href = paymentUrl;
+            link.innerText = `אישור לתשלום (${currentPrice} ₪)`;
+            document.getElementById('email-error').style.display = 'none';
+        }
+
+        const inp = document.getElementById("cityInput");
+        const listContainer = document.getElementById("autocomplete-list");
+        inp.addEventListener("input", function() {
+            const val = this.value;
+            listContainer.innerHTML = '';
+            if (!val) return;
+            cities.filter(c => c.includes(val)).slice(0, 10).forEach(city => {
+                const item = document.createElement("div");
+                item.className = "autocomplete-item";
+                item.innerHTML = city;
+                item.onclick = () => { inp.value = city; listContainer.innerHTML = ''; updateLink(); };
+                listContainer.appendChild(item);
+            });
+        });
+
+        function handlePayClick(e) {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const city = document.getElementById('cityInput').value;
+            const address = document.getElementById('address').value;
+            if (!name || !phone || !city || !email || !address) {
+                e.preventDefault();
+                alert("אנא מלא את כל השדות");
+                return false;
             }
+            if (!email.includes('@')) {
+                e.preventDefault();
+                document.getElementById('email-error').style.display = 'block';
+                return false;
+            }
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('city', city);
+            formData.append('address', address);
+            formData.append('order_id', currentOrderID);
+            formData.append('amount', currentPrice);
+            fetch("https://formspree.io/f/xpqzljzq", {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' },
+                keepalive: true
+            });
+            return true; 
         }
     </script>
 </body>
