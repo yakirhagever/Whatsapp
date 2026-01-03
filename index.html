@@ -3,151 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirsoftIL | המותג הרשמי</title>
+    <title>AirsoftIL | Premium Edition</title>
     <style>
+        /* עיצוב יוקרתי קלאסי */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
+            --main-bg: #ffffff;
+            --main-text: #1a1a1a;
             --accent-green: #27ae60;
+            --border-color: #1a1a1a;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Times New Roman', serif; /* וייב קלאסי */
+            background-color: var(--main-bg);
+            color: var(--main-text);
+            overflow-x: hidden;
         }
 
-        /* עיצוב כפתור יוקרתי - שקוף עם מסגרת */
-        .btn-brand {
+        /* כפתור שקוף עם קווי מתאר - בדיוק כמו שביקשת */
+        .btn-luxury {
             display: inline-block;
-            padding: 15px 35px;
-            background-color: transparent;
-            color: var(--text-color);
-            border: 2px solid var(--text-color);
+            padding: 12px 35px;
+            background: transparent;
+            color: var(--main-text);
+            border: 2px solid var(--border-color);
             text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.4s;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .btn-brand:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+        .btn-luxury:hover {
+            background-color: var(--main-text);
+            color: var(--main-bg);
         }
 
-        /* Hero Section */
+        /* ניהול דפים */
+        .page { display: none; padding: 40px 20px; animation: fadeIn 0.5s; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* דף הבית */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('gun-front.jpg'); 
-            background-size: cover;
-            background-position: center;
+            height: 80vh;
+            background: #f9f9f9;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .hero-content { text-align: center; }
-
-        /* תוכן דף הבית */
-        .official-importer {
             text-align: center;
-            padding: 80px 20px;
-            background: #fdfdfd;
+            flex-direction: column;
+            border-bottom: 1px solid #eee;
         }
 
-        .official-importer h1 { font-size: 2.5rem; margin-bottom: 5px; }
-        .official-importer p { font-size: 1.1rem; color: #666; }
+        .hero img { max-width: 80%; max-height: 400px; margin-bottom: 20px; }
 
-        /* מוצר ראשי */
-        .main-promo {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        .importer-banner { text-align: center; padding: 60px 0; }
+        .importer-banner h1 { font-size: 2.8rem; letter-spacing: -1px; margin-bottom: 10px; }
+
+        /* חבילה משתלמת */
+        .main-deal {
+            max-width: 900px;
+            margin: 40px auto;
             display: flex;
             align-items: center;
-            gap: 50px;
-            border-top: 1px solid #eee;
+            gap: 40px;
+            padding: 40px;
+            border: 1px solid #f0f0f0;
         }
 
-        .promo-text { flex: 1; }
-        .promo-image { flex: 1; }
-        .promo-image img { width: 100%; border-radius: 4px; }
+        .price-box { margin: 20px 0; }
+        .old-p { text-decoration: line-through; color: #999; font-size: 20px; }
+        .new-p { color: var(--accent-green); font-size: 35px; font-weight: bold; margin-right: 10px; }
 
-        .price-tag { margin: 20px 0; font-size: 1.5rem; }
-        .old-price { text-decoration: line-through; color: #999; margin-left: 10px; }
-        .new-price { color: var(--accent-green); font-weight: bold; font-size: 2rem; }
+        /* דף מוצרים */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        .points { list-style: none; padding: 0; margin-bottom: 30px; }
-        .points li { margin-bottom: 12px; font-weight: 500; }
-        .points li::before { content: "•"; margin-left: 8px; color: #ccc; }
-
-        /* Footer & Map */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 20px;
+        .card {
+            border: 1px solid #eee;
+            padding: 30px;
             text-align: center;
+            transition: 0.3s;
         }
 
-        .map-section { margin-top: 30px; border: 1px solid #333; }
+        .card:hover { border-color: #000; }
+        .card img { width: 100%; height: 200px; object-fit: contain; }
 
-        .whatsapp-link { color: #2ecc71; text-decoration: none; font-weight: bold; }
+        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; margin-top: 50px; }
+        .map-frame { filter: grayscale(1); margin-top: 20px; border: 1px solid #333; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <a href="products.html" class="btn-brand">לכל החבילות</a>
-        </div>
-    </section>
+    <div id="home-page" class="page active">
+        <section class="hero">
+            <img src="hero_gun.png" alt="SIG SAUER S2D.2">
+            <button class="btn-luxury" onclick="showPage('products-page')">לכל החבילות</button>
+        </section>
 
-    <div class="official-importer">
-        <h1>היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h1>
-        <p>משלוחים מהירים לכל המדינה</p>
+        <div class="importer-banner">
+            <h1>היבואן הרשמי של אקדח האוויר SIG SAUER 2D.2 בארץ</h1>
+            <p>משלוחים מהירים לכל המדינה</p>
+        </div>
+
+        <div class="main-deal">
+            <div style="flex:1">
+                <h2 style="font-size: 2rem;">לחבילה המשתלמת⭐️</h2>
+                <p>הדגם המוצלח SIG SAUER חוזר אלינו בגרסה משופרת - S2D.2 עם 2000 כדורי קרמיקה ונרתיק לאקדח!!!</p>
+                <div class="price-box">
+                    <span class="old-p">450₪</span>
+                    <span class="new-p">380₪</span>
+                </div>
+                <ul style="list-style: square; padding-right: 20px;">
+                    <li>100% ברזל מלא כולל המחסנית</li>
+                    <li>מגיע עד 90 מטר!</li>
+                    <li>רפליקה מדויקת של אקדח SIG SAUER אמיתי</li>
+                </ul>
+                <button class="btn-luxury" onclick="showPage('products-page')">לרכישה</button>
+            </div>
+            <div style="flex:1">
+                <img src="bundle_main.png" style="width:100%">
+            </div>
+        </div>
+        
+        <footer>
+            <h3>אפשר להגיע לאיסוף?</h3>
+            <p>כן, כדי לתאם זמני הגעה תשלח/י לנו הודעה בוואצאפ <a href="https://wa.me/972542266696" style="color:white;">054-2266696</a></p>
+            <p>כתובת - אהוד מנור 3 בת ים, לא להגיע ללא תיאום</p>
+            <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.597!2d34.747!3d31.987" width="100%" height="250" style="border:0;" allowfullscreen=""></iframe>
+            <p style="margin-top:40px; font-size: 12px; opacity: 0.5;">@2026 copyright remains to-> AirsoftIL</p>
+        </footer>
     </div>
 
-    <section class="main-promo">
-        <div class="promo-text">
-            <h2 style="font-size: 2rem;">לחבילה המשתלמת⭐️</h2>
-            <p>הדגם המוצלח SIG SAUER חוזר אלינו בגרסה משופרת - S2D.2 עם 2000 כדורי קרמיקה ונרתיק לאקדח!!! במחיר חסר תקדים</p>
-            
-            <div class="price-tag">
-                <span class="old-price">450₪</span>
-                <span class="new-price">380₪</span>
+    <div id="products-page" class="page">
+        <h1 style="text-align:center; font-size: 3rem; margin-bottom: 50px;">המוצרים שלנו</h1>
+        <div class="products-grid">
+            <div class="card">
+                <img src="p1.png" alt="בסיסי">
+                <h3>חבילה לבסיסיים</h3>
+                <p class="new-p">350₪</p>
+                <p>אקדח אוויר S2D.2 ו-2,000 כדורי קרמיקה</p>
+                <button class="btn-luxury">להזמנה</button>
             </div>
-
-            <ul class="points">
-                <li>100% ברזל מלא כולל המחסנית</li>
-                <li>מגיע עד 90 מטר! כ-20 מטר יותר מהדגם הישן</li>
-                <li>רפליקה מדויקת של אקדח SIG SAUER אמיתי</li>
-            </ul>
-
-            <a href="products.html" class="btn-brand">לרכישה</a>
-        </div>
-        <div class="promo-image">
-            <img src="main-product.jpg" alt="SIG SAUER Bundle">
-        </div>
-    </section>
-
-    <footer>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h3>אפשר להגיע לאיסוף?</h3>
-            <p>כן, כדי לתאם זמני הגעה תשלח/י לנו הודעה בוואצאפ <a href="https://wa.me/972542266696" class="whatsapp-link">054-2266696</a></p>
-            <p>כתובת - אהוד מנור 3 בת ים, לא להגיע ללא תיאום</p>
-            
-            <div class="map-section">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3386.35!2d34.74!3d32.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4ca6b865069f%3A0x6a2c7a10!2z15DXlNeV15Mg157XoNeV16EgMywg15HXqiDXmded!5e0!3m2!1siw!2sil!4v123456789" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="card">
+                <img src="p2.png" alt="מביני עניין">
+                <h3>חבילה למביני עניין</h3>
+                <p class="new-p">380₪</p>
+                <p>אקדח אוויר S2D.2, 2,000 כדורים ונרתיק עור</p>
+                <button class="btn-luxury">להזמנה</button>
             </div>
-
-            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">
-                @2026 copyright remains to -> AirsoftIL
-            </p>
+            <div class="card">
+                <img src="p3.png" alt="זוג">
+                <h3>חבילה לזוג</h3>
+                <p class="new-p">680₪</p>
+                <p>2 אקדחי אוויר ו-4,000 כדורי קרמיקה</p>
+                <button class="btn-luxury">להזמנה</button>
+            </div>
+             <div class="card">
+                <img src="p4.png" alt="שלושה">
+                <h3>חבילה לשלושה</h3>
+                <p class="new-p">980₪</p>
+                <p>3 אקדחי אוויר ו-6,000 כדורי קרמיקה</p>
+                <button class="btn-luxury">להזמנה</button>
+            </div>
         </div>
-    </footer>
+        <center style="margin-top:50px;">
+            <button class="btn-luxury" onclick="showPage('home-page')">חזרה לדף הבית</button>
+        </center>
+    </div>
 
+    <script>
+        function showPage(pageId) {
+            // מסתיר את כל הדפים
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // מציג את הדף המבוקש
+            document.getElementById(pageId).classList.add('active');
+            // גולל לראש הדף
+            window.scrollTo(0,0);
+        }
+    </script>
 </body>
 </html>
